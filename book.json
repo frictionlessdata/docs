@@ -1,0 +1,6 @@
+{
+    "structure": {
+        "readme": "INTRODUCTION.md"
+    },
+    "plugins" : [ "anchor-navigation-ex" ]
+}

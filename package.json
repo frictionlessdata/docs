@@ -1,0 +1,23 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "gitbook-plugin-anchor-navigation": "0.0.1",
+    "gitbook-plugin-anchor-navigation-ex": "^1.0.10"
+  },
+  "devDependencies": {
+    "axios": "^0.17.1",
+    "js-yaml": "^3.10.0",
+    "lodash": "^4.17.4"
+  },
+  "scripts": {
+    "build": "gitbook build docs",
+    "dev": "gitbook serve",
+    "remote": "node remote.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}

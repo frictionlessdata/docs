@@ -1,0 +1,978 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>tableschema-sql-py · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="tableschema-bigquery-py.html" />
+    
+    
+    <link rel="prev" href="tableschema-py.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Overview
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../sources/architecture.html">
+            
+                <a href="../sources/architecture.html">
+            
+                    
+                    Architecture
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../sources/development.html">
+            
+                <a href="../sources/development.html">
+            
+                    
+                    Development
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" >
+            
+                <span>
+            
+                    
+                    Contributing
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Getting Started
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" >
+            
+                <span>
+            
+                    
+                    How to use libraries
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Tutorials
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../sources/working-with-data-package.html">
+            
+                <a href="../sources/working-with-data-package.html">
+            
+                    
+                    Working with Data Package
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    Inferring metadata
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" >
+            
+                <span>
+            
+                    
+                    Import/export to SQL
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    API Reference
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" >
+            
+                <span>
+            
+                    
+                    Python
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="goodtables-py.html">
+            
+                <a href="goodtables-py.html">
+            
+                    
+                    goodtables-py
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2" data-path="datapackage-py.html">
+            
+                <a href="datapackage-py.html">
+            
+                    
+                    datapackage-py
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3" data-path="tableschema-py.html">
+            
+                <a href="tableschema-py.html">
+            
+                    
+                    tableschema-py
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.1.4" data-path="tableschema-sql-py.html">
+            
+                <a href="tableschema-sql-py.html">
+            
+                    
+                    tableschema-sql-py
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.5" data-path="tableschema-bigquery-py.html">
+            
+                <a href="tableschema-bigquery-py.html">
+            
+                    
+                    tableschema-bigquery-py
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6" data-path="tableschema-pandas-py.html">
+            
+                <a href="tableschema-pandas-py.html">
+            
+                    
+                    tableschema-pandas-py
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.7" data-path="tabulator-py.html">
+            
+                <a href="tabulator-py.html">
+            
+                    
+                    tabulator-py
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" >
+            
+                <span>
+            
+                    
+                    JavaScript
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="goodtables-ui.html">
+            
+                <a href="goodtables-ui.html">
+            
+                    
+                    goodtables-ui
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="datapackage-ui.html">
+            
+                <a href="datapackage-ui.html">
+            
+                    
+                    datapackage-ui
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.3" data-path="datapackage-js.html">
+            
+                <a href="datapackage-js.html">
+            
+                    
+                    datapackage-js
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.4" data-path="tableschema-js.html">
+            
+                <a href="tableschema-js.html">
+            
+                    
+                    tableschema-js
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" >
+            
+                <span>
+            
+                    
+                    Ruby
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="datapackage-rb.html">
+            
+                <a href="datapackage-rb.html">
+            
+                    
+                    datapackage-rb
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.2" data-path="tableschema-rb.html">
+            
+                <a href="tableschema-rb.html">
+            
+                    
+                    tableschema-rb
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" >
+            
+                <span>
+            
+                    
+                    PHP
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1" data-path="datapackage-php.html">
+            
+                <a href="datapackage-php.html">
+            
+                    
+                    datapackage-php
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2" data-path="tableschema-php.html">
+            
+                <a href="tableschema-php.html">
+            
+                    
+                    tableschema-php
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" >
+            
+                <span>
+            
+                    
+                    Go
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.5.1" data-path="datapackage-go.html">
+            
+                <a href="datapackage-go.html">
+            
+                    
+                    datapackage-go
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.2" data-path="tableschema-go.html">
+            
+                <a href="tableschema-go.html">
+            
+                    
+                    tableschema-go
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" >
+            
+                <span>
+            
+                    
+                    Java
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.6.1" data-path="datapackage-java.html">
+            
+                <a href="datapackage-java.html">
+            
+                    
+                    datapackage-java
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.2" data-path="tableschema-java.html">
+            
+                <a href="tableschema-java.html">
+            
+                    
+                    tableschema-java
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" >
+            
+                <span>
+            
+                    
+                    R
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.7.1" data-path="datapackage-r.html">
+            
+                <a href="datapackage-r.html">
+            
+                    
+                    datapackage-r
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7.2" data-path="tableschema-r.html">
+            
+                <a href="tableschema-r.html">
+            
+                    
+                    tableschema-r
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" >
+            
+                <span>
+            
+                    
+                    Clojure
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.8.1" data-path="datapackage-clj.html">
+            
+                <a href="datapackage-clj.html">
+            
+                    
+                    datapackage-clj
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8.2" data-path="tableschema-clj.html">
+            
+                <a href="tableschema-clj.html">
+            
+                    
+                    tableschema-clj
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" >
+            
+                <span>
+            
+                    
+                    Julia
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.9.1" data-path="datapackage-jl.html">
+            
+                <a href="datapackage-jl.html">
+            
+                    
+                    datapackage-jl
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9.2" data-path="tableschema-jl.html">
+            
+                <a href="tableschema-jl.html">
+            
+                    
+                    tableschema-jl
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >tableschema-sql-py</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-anchor"></i><ul><li><span class="title-icon "></span><a href="#tableschema-sql-py"><b>1. </b>tableschema-sql-py</a></li><ul><li><span class="title-icon "></span><a href="#features"><b>1.1. </b>Features</a></li><li><span class="title-icon "></span><a href="#getting-started"><b>1.2. </b>Getting Started</a></li><ul><li><span class="title-icon "></span><a href="#installation"><b>1.2.1. </b>Installation</a></li><li><span class="title-icon "></span><a href="#examples"><b>1.2.2. </b>Examples</a></li></ul><li><span class="title-icon "></span><a href="#documentation"><b>1.3. </b>Documentation</a></li><ul><li><span class="title-icon "></span><a href="#storage"><b>1.3.1. </b>Storage</a></li></ul><li><span class="title-icon "></span><a href="#contributing"><b>1.4. </b>Contributing</a></li><li><span class="title-icon "></span><a href="#changelog"><b>1.5. </b>Changelog</a></li><ul><li><span class="title-icon "></span><a href="#v0x"><b>1.5.1. </b>v0.x</a></li></ul></ul></ul></div><a href="#tableschema-sql-py" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="tableschema-sql-py"><a name="tableschema-sql-py" class="anchor-navigation-ex-anchor" href="#tableschema-sql-py"><i class="fa fa-link" aria-hidden="true"></i></a>1. tableschema-sql-py</h1>
+<p><a href="https://travis-ci.org/frictionlessdata/tableschema-sql-py" target="_blank"><img src="https://img.shields.io/travis/frictionlessdata/tableschema-sql-py/master.svg" alt="Travis"></a>
+<a href="https://coveralls.io/r/frictionlessdata/tableschema-sql-py?branch=master" target="_blank"><img src="http://img.shields.io/coveralls/frictionlessdata/tableschema-sql-py/master.svg" alt="Coveralls"></a>
+<a href="https://pypi.python.org/pypi/tableschema-sql" target="_blank"><img src="https://img.shields.io/pypi/v/tableschema-sql.svg" alt="PyPi"></a>
+<a href="https://gitter.im/frictionlessdata/chat" target="_blank"><img src="https://img.shields.io/gitter/room/frictionlessdata/chat.svg" alt="Gitter"></a></p>
+<p>Generate and load SQL tables based on <a href="http://specs.frictionlessdata.io/table-schema/" target="_blank">Table Schema</a> descriptors.</p>
+<h2 id="features"><a name="features" class="anchor-navigation-ex-anchor" href="#features"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. Features</h2>
+<ul>
+<li>implements <code>tableschema.Storage</code> interface</li>
+<li>provides additional features like indexes and updating</li>
+</ul>
+<h2 id="getting-started"><a name="getting-started" class="anchor-navigation-ex-anchor" href="#getting-started"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. Getting Started</h2>
+<h3 id="installation"><a name="installation" class="anchor-navigation-ex-anchor" href="#installation"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.1. Installation</h3>
+<p>The package use semantic versioning. It means that major versions  could include breaking changes. It&apos;s highly recommended to specify <code>package</code> version range in your <code>setup/requirements</code> file e.g. <code>package&gt;=1.0,&lt;2.0</code>.</p>
+<pre><code class="lang-bash">pip install tableschema-sql
+</code></pre>
+<h3 id="examples"><a name="examples" class="anchor-navigation-ex-anchor" href="#examples"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.2. Examples</h3>
+<p>Code examples in this readme requires Python 3.3+ interpreter. You could see even more example in <a href="https://github.com/frictionlessdata/tableschema-sql-py/tree/master/examples" target="_blank">examples</a> directory.</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tableschema <span class="hljs-keyword">import</span> Table
+<span class="hljs-keyword">from</span> sqlalchemy <span class="hljs-keyword">import</span> create_engine
+
+<span class="hljs-comment"># Load and save table to SQL</span>
+engine = create_engine(<span class="hljs-string">&apos;sqlite://&apos;</span>)
+table = Table(<span class="hljs-string">&apos;data.csv&apos;</span>, schema=<span class="hljs-string">&apos;schema.json&apos;</span>)
+table.save(<span class="hljs-string">&apos;data&apos;</span>, storage=<span class="hljs-string">&apos;sql&apos;</span>, engine=engine)
+</code></pre>
+<h2 id="documentation"><a name="documentation" class="anchor-navigation-ex-anchor" href="#documentation"><i class="fa fa-link" aria-hidden="true"></i></a>1.3. Documentation</h2>
+<p>The whole public API of this package is described here and follows semantic versioning rules. Everyting outside of this readme are private API and could be changed without any notification on any new version.</p>
+<h3 id="storage"><a name="storage" class="anchor-navigation-ex-anchor" href="#storage"><i class="fa fa-link" aria-hidden="true"></i></a>1.3.1. Storage</h3>
+<p>Package implements <a href="https://github.com/frictionlessdata/tableschema-py#storage" target="_blank">Tabular Storage</a> interface (see full documentation on the link):</p>
+<p><img src="https://i.imgur.com/RQgrxqp.png" alt="Storage"></p>
+<p>This driver provides an additional API:</p>
+<h4 id="storageengine-dbschemanone-prefix-reflectonlynone-autoincrementfalse"><a name="storageengine-dbschemanone-prefix-reflectonlynone-autoincrementfalse" class="anchor-navigation-ex-anchor" href="#storageengine-dbschemanone-prefix-reflectonlynone-autoincrementfalse"><i class="fa fa-link" aria-hidden="true"></i></a><code>Storage(engine, dbschema=None, prefix=&apos;&apos;, reflect_only=None, autoincrement=False)</code></h4>
+<ul>
+<li><code>engine (object)</code> - <code>sqlalchemy</code> engine</li>
+<li><code>dbschema (str)</code> - name of database schema</li>
+<li><code>prefix (str)</code> - prefix for all buckets</li>
+<li><code>reflect_only (callable)</code> - a boolean predicate to filter the list of table names when reflecting</li>
+<li><code>autoincrement (bool)</code> - add autoincrement column at the beginning</li>
+</ul>
+<h4 id="storagecreate-indexesfieldsnone"><a name="storagecreate-indexesfieldsnone" class="anchor-navigation-ex-anchor" href="#storagecreate-indexesfieldsnone"><i class="fa fa-link" aria-hidden="true"></i></a><code>storage.create(..., indexes_fields=None)</code></h4>
+<ul>
+<li><code>indexes_fields (str[])</code> - list of tuples containing field names, or list of such lists</li>
+</ul>
+<h4 id="storagewrite-keyedfalse-asgeneratorfalse-updatekeysnone"><a name="storagewrite-keyedfalse-asgeneratorfalse-updatekeysnone" class="anchor-navigation-ex-anchor" href="#storagewrite-keyedfalse-asgeneratorfalse-updatekeysnone"><i class="fa fa-link" aria-hidden="true"></i></a><code>storage.write(..., keyed=False, as_generator=False, update_keys=None)</code></h4>
+<ul>
+<li><code>keyed (bool)</code> - accept keyed rows</li>
+<li><code>as_generator (bool)</code> - returns generator to provide writing control to the client</li>
+<li><code>update_keys (str[])</code> - update instead of inserting if key values match existent rows</li>
+</ul>
+<h2 id="contributing"><a name="contributing" class="anchor-navigation-ex-anchor" href="#contributing"><i class="fa fa-link" aria-hidden="true"></i></a>1.4. Contributing</h2>
+<p>The project follows the <a href="https://github.com/okfn/coding-standards" target="_blank">Open Knowledge International coding standards</a>.</p>
+<p>Recommended way to get started is to create and activate a project virtual environment.
+To install package and development dependencies into active environment:</p>
+<pre><code>$ make install
+</code></pre><p>To run tests with linting and coverage:</p>
+<pre><code class="lang-bash">$ make <span class="hljs-built_in">test</span>
+</code></pre>
+<p>For linting <code>pylama</code> configured in <code>pylama.ini</code> is used. On this stage it&apos;s already
+installed into your environment and could be used separately with more fine-grained control
+as described in documentation - <a href="https://pylama.readthedocs.io/en/latest/" target="_blank">https://pylama.readthedocs.io/en/latest/</a>.</p>
+<p>For example to sort results by error type:</p>
+<pre><code class="lang-bash">$ pylama --sort &lt;path&gt;
+</code></pre>
+<p>For testing <code>tox</code> configured in <code>tox.ini</code> is used.
+It&apos;s already installed into your environment and could be used separately with more fine-grained control as described in documentation - <a href="https://testrun.org/tox/latest/" target="_blank">https://testrun.org/tox/latest/</a>.</p>
+<p>For example to check subset of tests against Python 2 environment with increased verbosity.
+All positional arguments and options after <code>--</code> will be passed to <code>py.test</code>:</p>
+<pre><code class="lang-bash">tox <span class="hljs-_">-e</span> py27 -- -v tests/&lt;path&gt;
+</code></pre>
+<p>Under the hood <code>tox</code> uses <code>pytest</code> configured in <code>pytest.ini</code>, <code>coverage</code>
+and <code>mock</code> packages. This packages are available only in tox envionments.</p>
+<h2 id="changelog"><a name="changelog" class="anchor-navigation-ex-anchor" href="#changelog"><i class="fa fa-link" aria-hidden="true"></i></a>1.5. Changelog</h2>
+<p>Here described only breaking and the most important changes. The full changelog and documentation for all released versions could be found in nicely formatted <a href="https://github.com/frictionlessdata/tableschema-sql-py/commits/master" target="_blank">commit history</a>.</p>
+<h3 id="v0x"><a name="v0x" class="anchor-navigation-ex-anchor" href="#v0x"><i class="fa fa-link" aria-hidden="true"></i></a>1.5.1. v0.x</h3>
+<p>Initial driver implementation.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="tableschema-py.html" class="navigation navigation-prev " aria-label="Previous page: tableschema-py">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="tableschema-bigquery-py.html" class="navigation navigation-next " aria-label="Next page: tableschema-bigquery-py">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"tableschema-sql-py","level":"1.5.1.4","depth":3,"next":{"title":"tableschema-bigquery-py","level":"1.5.1.5","depth":3,"path":"references/tableschema-bigquery-py.md","ref":"references/tableschema-bigquery-py.md","articles":[]},"previous":{"title":"tableschema-py","level":"1.5.1.3","depth":3,"path":"references/tableschema-py.md","ref":"references/tableschema-py.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchor-navigation-ex","livereload"],"pluginsConfig":{"anchor-navigation-ex":{"showLevel":true,"associatedWithSummary":true,"mode":"float","printLog":false,"multipleH1":true,"float":{"showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""},"pageTop":{"showLevelIcon":false,"level1Icon":"","level2Icon":"","level3Icon":""}},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRODUCTION.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"references/tableschema-sql-py.md","mtime":"2018-01-24T08:36:02.927Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-24T08:33:28.448Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
