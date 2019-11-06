@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "gitbook-cli": "^2.3.2",
     "gitbook-plugin-anchor-navigation": "0.0.1",
     "gitbook-plugin-anchor-navigation-ex": "^1.0.10"
   },
