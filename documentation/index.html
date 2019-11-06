@@ -22,15 +22,20 @@
         repo: 'https://github.com/frictionlessdata/documentation',
         homepage: 'index.md',
         loadSidebar: 'sidebar.md',
+        notFoundPage: 'missing.md',
         auto2top: true,
+        autoHeader: true,
         maxLevel: 3,
         subMaxLevel: 3,
+        // TODO: needs server support
+        // routerMode: 'history',
 
         // Plugins
         ga: 'UA-xxxxxxx-x',
         executeScript: true,
         search: {depth: 3, noData: 'No results!', placeholder: 'Search...'},
         pagination: {previousText: 'Previous', nextText: 'Next', crossChapter: true},
+        remoteMarkdown: {tag: 'remoteMarkdownUrl'},
         tabs: {},
 
       };
@@ -44,6 +49,7 @@
     <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/class-change@1"></script>
     <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+    <script src="//unpkg.com/docsify-remote-markdown/dist/docsify-remote-markdown.min.js"></script>
     <script>
       // Initialize the default attribute listener
       classChange.attrs();

@@ -1,11 +1,13 @@
-- Overview
+- [Overview](overview/index.md)
   - [Architecture](overview/architecture.md)
   - [Development](overview/development.md)
-  - Contributing
-- Getting Started
-  - How to use libraries
-- Tutorials
+  - [Contributing](overview/contributing.md)
+- [Getting Started](starting/index.md)
+  - [How to use libraries](starting/how-to-use-libraries.md)
+- [Tutorials](tutorials/index.md)
   - [Working with Data Package](tutorials/working-with-data-package.md)
-  - Inferring metadata
-  - Import/export to SQL
-- References
+  - [Inferring metadata](tutorials/inferring-metadata.md)
+  - [Import/export to SQL](tutorials/import-export-sql.md)
+- [References](references/index.md)
+  - [Python](references/python/index.md)
+    - [goodtables-py](references/python/goodtables-py.md)
