@@ -1,4 +1,4 @@
-# FrictionlessData Developer Hub
+# FrictionlessData Docs
 
 
 Welcome to the FrictionlessData Developer Hub!

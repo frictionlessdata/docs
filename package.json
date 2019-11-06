@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "docsify-cli": "^4.3.0"
+  },
   "devDependencies": {},
   "scripts": {
+    "serve": "docsify serve docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

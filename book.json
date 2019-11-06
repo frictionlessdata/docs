@@ -1,9 +1,0 @@
-{
-    "gitbook": "2.6.7",
-    "structure": {
-        "readme": "STARTER.md"
-    },
-    "plugins" : [
-        "anchor-navigation-ex"
-    ]
-}
