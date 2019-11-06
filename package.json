@@ -1,22 +1,11 @@
 {
-  "name": "docs",
+  "name": "documentation",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {
-    "gitbook-cli": "^2.3.2",
-    "gitbook-plugin-anchor-navigation": "0.0.1",
-    "gitbook-plugin-anchor-navigation-ex": "^1.0.10"
-  },
-  "devDependencies": {
-    "axios": "^0.19.0",
-    "js-yaml": "^3.10.0",
-    "lodash": "^4.17.4"
-  },
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
-    "build": "gitbook build docs",
-    "dev": "gitbook serve",
-    "remote": "node remote.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
