@@ -11,8 +11,7 @@
 # JavaScript
 
 - goodtables-ui
-- name: datapackage-ui
-  branch: gh-pages
+- datapackage-ui
 - datapackage-js
 - tableschema-js
 

@@ -3,11 +3,10 @@
 [![Travis](https://travis-ci.org/frictionlessdata/datapackage-js.svg?branch=master)](https://travis-ci.org/frictionlessdata/datapackage-js)
 [![Coveralls](https://coveralls.io/repos/github/frictionlessdata/datapackage-js/badge.svg?branch=master)](https://coveralls.io/github/frictionlessdata/datapackage-js?branch=master)
 [![NPM](https://img.shields.io/npm/v/datapackage.svg)](https://www.npmjs.com/package/datapackage)
+[![Github](https://img.shields.io/badge/github-master-brightgreen)](https://github.com/frictionlessdata/datapackage-js)
 [![Gitter](https://img.shields.io/gitter/room/frictionlessdata/chat.svg)](https://gitter.im/frictionlessdata/chat)
 
 A library for working with [Data Packages](http://specs.frictionlessdata.io/data-package/).
-
-> Version v1.0 includes various important changes. Please read a [migration guide](#v10).
 
 ## Features
 
@@ -16,6 +15,28 @@ A library for working with [Data Packages](http://specs.frictionlessdata.io/data
  - `Profile` class for working with profiles
  - `validate` function for validating data package descriptors
  - `infer` function for inferring data package descriptors
+
+## Contents
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Examples](#examples)
+- [Documentation](#documentation)
+  - [Package](#package)
+  - [Resource](#resource)
+  - [Profile](#profile)
+  - [validate](#validate)
+  - [infer](#infer)
+  - [Foreign Keys](#foreign-keys)
+  - [Errors](#errors)
+- [Contributing](#contributing)
+- [Changelog](#changelog)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Getting Started
 
@@ -565,7 +586,7 @@ Validate a data package `descriptor` against the profile.
 - `descriptor (Object)` - retrieved and dereferenced data package descriptor
 - `(Object)` - returns a `{valid, errors}` object
 
-### Validate
+### validate
 
 A standalone function to validate a data package descriptor:
 
@@ -583,7 +604,7 @@ This function is async so it has to be used with `await` keyword or as a `Promis
 - `descriptor (String/Object)` - data package descriptor (local/remote path or object)
 - `(Object)` - returns a `{valid, errors}` object
 
-### Infer
+### infer
 
 A standalone function to infer a data package descriptor.
 
@@ -721,10 +742,21 @@ $ npm run build
 
 Here described only breaking and the most important changes. The full changelog and documentation for all released versions could be found in nicely formatted [commit history](https://github.com/frictionlessdata/datapackage-js/commits/master).
 
-### v1.0
+#### v1.1
+
+Updated behaviour:
+
+- Resource's `escapeChar` and `quoteChar` are mutually exclusive now
+
+New API added:
+
+- Added support of `zip` files for data packages
+- Added support of `format/encoding/dialect` for resources
+
+#### v1.0
 
 This version includes various big changes. A migration guide is under development and will be published here.
 
-### v0.8
+#### v0.8
 
 First stable version of the library.

@@ -3,6 +3,7 @@
 [![Travis](https://img.shields.io/travis/frictionlessdata/tableschema-sql-py/master.svg)](https://travis-ci.org/frictionlessdata/tableschema-sql-py)
 [![Coveralls](http://img.shields.io/coveralls/frictionlessdata/tableschema-sql-py/master.svg)](https://coveralls.io/r/frictionlessdata/tableschema-sql-py?branch=master)
 [![PyPi](https://img.shields.io/pypi/v/tableschema-sql.svg)](https://pypi.python.org/pypi/tableschema-sql)
+[![Github](https://img.shields.io/badge/github-master-brightgreen)](https://github.com/frictionlessdata/tableschema-sql-py)
 [![Gitter](https://img.shields.io/gitter/room/frictionlessdata/chat.svg)](https://gitter.im/frictionlessdata/chat)
 
 Generate and load SQL tables based on [Table Schema](http://specs.frictionlessdata.io/table-schema/) descriptors.
@@ -11,6 +12,20 @@ Generate and load SQL tables based on [Table Schema](http://specs.frictionlessda
 
 - implements `tableschema.Storage` interface
 - provides additional features like indexes and updating
+
+## Contents
+
+<!--TOC-->
+
+  - [Getting Started](#getting-started)
+    - [Installation](#installation)
+    - [Examples](#examples)
+  - [Documentation](#documentation)
+    - [Storage](#storage)
+  - [Contributing](#contributing)
+  - [Changelog](#changelog)
+
+<!--TOC-->
 
 ## Getting Started
 
@@ -48,12 +63,14 @@ Package implements [Tabular Storage](https://github.com/frictionlessdata/tablesc
 
 This driver provides an additional API:
 
-#### `Storage(engine, dbschema=None, prefix='', reflect_only=None, autoincrement=False)`
+#### `Storage(engine, dbschema=None, prefix='', reflect_only=None, autoincrement=None)`
 - `engine (object)` - `sqlalchemy` engine
 - `dbschema (str)` - name of database schema
 - `prefix (str)` - prefix for all buckets
 - `reflect_only (callable)` - a boolean predicate to filter the list of table names when reflecting
-- `autoincrement (bool)` - add autoincrement column at the beginning
+- `autoincrement (str/dict)` - add autoincrement column at the beginning.
+  - if a string it's an autoincrement column name
+  - if a dict it's an autoincrements mapping with column names indexed by bucket names, for example, `{'bucket1': 'id', 'bucket2': 'other_id}`
 
 #### `storage.create(..., indexes_fields=None)`
 
@@ -64,6 +81,8 @@ This driver provides an additional API:
 - `keyed (bool)` - accept keyed rows
 - `as_generator (bool)` - returns generator to provide writing control to the client
 - `update_keys (str[])` - update instead of inserting if key values match existent rows
+- `buffer_size (int=1000)` - maximum number of rows to try and write to the db in one batch
+- `use_bloom_filter (bool=True)` - should we use a bloom filter to optimize DB update performance (in exchange for some setup time)
 
 ## Contributing
 
@@ -109,6 +128,19 @@ and `mock` packages. This packages are available only in tox envionments.
 
 Here described only breaking and the most important changes. The full changelog and documentation for all released versions could be found in nicely formatted [commit history](https://github.com/frictionlessdata/tableschema-sql-py/commits/master).
 
-### v0.x
+#### v1.3
 
-Initial driver implementation.
+- Implemented constraints loading to a database
+
+#### v1.2
+
+- Add option to configure buffer size, bloom filter use (#77)
+
+#### v1.1
+
+- Added support for the `autoincrement` parameter to be a mapping
+- Fixed autoincrement support for SQLite and MySQL
+
+#### v1.0
+
+- Initial driver implementation.

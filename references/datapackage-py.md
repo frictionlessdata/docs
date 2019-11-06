@@ -3,6 +3,7 @@
 [![Travis](https://travis-ci.org/frictionlessdata/datapackage-py.svg?branch=master)](https://travis-ci.org/frictionlessdata/datapackage-py)
 [![Coveralls](https://coveralls.io/repos/github/frictionlessdata/datapackage-py/badge.svg?branch=master)](https://coveralls.io/github/frictionlessdata/datapackage-py?branch=master)
 [![PyPi](https://img.shields.io/pypi/v/datapackage.svg)](https://pypi.python.org/pypi/datapackage)
+[![Github](https://img.shields.io/badge/github-master-brightgreen)](https://github.com/frictionlessdata/datapackage-py)
 [![Gitter](https://img.shields.io/gitter/room/frictionlessdata/chat.svg)](https://gitter.im/frictionlessdata/chat)
 
 A library for working with [Data Packages](http://specs.frictionlessdata.io/data-package/).
@@ -15,6 +16,29 @@ A library for working with [Data Packages](http://specs.frictionlessdata.io/data
  - `validate` function for validating data package descriptors
  - `infer` function for inferring data package descriptors
 
+## Contents
+
+<!--TOC-->
+
+  - [Getting Started](#getting-started)
+    - [Installation](#installation)
+    - [Examples](#examples)
+  - [Documentation](#documentation)
+    - [Package](#package)
+    - [Resource](#resource)
+    - [Group](#group)
+    - [Profile](#profile)
+    - [validate](#validate)
+    - [infer](#infer)
+    - [Foreign Keys](#foreign-keys)
+    - [Exceptions](#exceptions)
+    - [CLI](#cli)
+    - [Notes](#notes)
+  - [Contributing](#contributing)
+  - [Changelog](#changelog)
+
+<!--TOC-->
+
 ## Getting Started
 
 ### Installation
@@ -25,6 +49,13 @@ The package use semantic versioning. It means that major versions  could include
 $ pip install datapackage
 ```
 
+#### OSX 10.14+
+If you receive an error about the `cchardet` package when installing datapackage on Mac OSX 10.14 (Mojave) or higher, follow these steps:
+1. Make sure you have the latest x-code by running the following in terminal: `xcode-select --install`
+2. Then go to [https://developer.apple.com/download/more/](https://developer.apple.com/download/more/) and download the `command line tools`. Note, this requires an Apple ID.
+3. Then, in terminal, run `open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg`
+You can read more about these steps in this [post.](https://stackoverflow.com/questions/52509602/cant-compile-c-program-on-a-mac-after-upgrade-to-mojave)
+
 ### Examples
 
 Code examples in this readme requires Python 3.3+ interpreter. You could see even more example in [examples](https://github.com/frictionlessdata/datapackage-py/tree/master/examples) directory.
@@ -33,7 +64,7 @@ Code examples in this readme requires Python 3.3+ interpreter. You could see eve
 from datapackage import Package
 
 package = Package('datapackage.json')
-package.getResource('resource').read()
+package.get_resource('resource').read()
 ```
 
 ## Documentation
@@ -123,7 +154,7 @@ package = Package('datapackage.zip')
 
 It was onle basic introduction to the `Package` class. To learn more let's take a look on `Package` class API reference.
 
-#### `Package(descriptor, base_path=None, strict=False, storage=None, **options)`
+#### `Package(descriptor=None, base_path=None, strict=False, storage=None, **options)`
 
 Constructor to instantiate `Package` class.
 
@@ -150,6 +181,10 @@ Constructor to instantiate `Package` class.
 #### `package.descriptor`
 
 - `(dict)` - returns data package descriptor
+
+#### `package.base_path`
+
+- `(str/None)` - returns the data package base path
 
 #### `package.resources`
 
@@ -182,6 +217,13 @@ Remove data package resource by name. The data package descriptor will be valida
 - `(exceptions.DataPackageException)` - raises error if something goes wrong
 - `(Resource/None)` - returns removed `Resource` instances or null if not found
 
+#### `package.get_group(name)`
+
+Returns a group of tabular resources by name. For more information about groups see [Group](#group).
+
+- `name (str)` - name of a group of resources
+- `(exceptions.DataPackageException)` - raises error if something goes wrong
+- `(Group/None)` - returns a `Group` instance or null if not found
 
 #### `package.infer(pattern=False)`
 
@@ -213,12 +255,13 @@ package.commit()
 package.name # renamed-package
 ```
 
-#### `package.save(target, storage=None, **options)`
+#### `package.save(target=None, storage=None, merge_groups=False,  **options)`
 
 Saves this data package to storage if `storage` argument is passed or saves this data package's descriptor to json file if `target` arguments ends with `.json` or saves this data package to zip file otherwise.
 
 - `target (string/filelike)` - the file path or a file-like object where the contents of this Data Package will be saved into.
 - `storage (str/tableschema.Storage)` - storage name like `sql` or storage instance
+- `merge_groups` (bool) - save all the group's tabular resoruces into one bucket if a storage is provided (for example into one SQL table). Read more about [Group](#group).
 - `options (dict)` - storage options to use for storage creation
 - `(exceptions.DataPackageException)` - raises if there was some error writing the package
 - `(bool)` - return true on success
@@ -263,13 +306,15 @@ Let's create and read a resource. Because resource is tabular we could use `reso
 ```python
 resource = Resource({path: 'data.csv'})
 resource.tabular # true
-resource.headers # ['city', 'location']
 resource.read(keyed=True)
 # [
 #   {city: 'london', location: '51.50,-0.11'},
 #   {city: 'paris', location: '48.85,2.30'},
 #   {city: 'rome', location: 'N/A'},
 # ]
+resource.headers
+# ['city', 'location']
+# (reading has to be started first)
 ```
 
 As we could see our locations are just a strings. But it should be geopoints. Also Rome's location is not available but it's also just a `N/A` string instead of Python `None`. First we have to infer resource metadata:
@@ -367,7 +412,7 @@ resource = Resource('dataresource.json')
 
 It was onle basic introduction to the `Resource` class. To learn more let's take a look on `Resource` class API reference.
 
-#### `Resource(descriptor, base_path=None, strict=False, storage=None, **options)`
+#### `Resource(descriptor={}, base_path=None, strict=False, storage=None, **options)`
 
 Constructor to instantiate `Resource` class.
 
@@ -378,6 +423,10 @@ Constructor to instantiate `Resource` class.
 - `options (dict)` - storage options to use for storage creation
 - `(exceptions.DataPackageException)` - raises error if something goes wrong
 - `(Resource)` - returns resource class instance
+
+#### `resource.package`
+
+- `(Package)` - returns a package instance if the resource belongs to some package
 
 #### `resource.valid`
 
@@ -427,7 +476,7 @@ Combination of `resource.source` and `resource.inline/local/remote/multipart` pr
 
 #### `resource.headers`
 
-> Only for tabular resources
+> Only for tabular resources (reading has to be started first or it will return `None`)
 
 - `(str[])` - returns data source headers
 
@@ -439,7 +488,7 @@ For tabular resources it returns `Schema` instance to interact with data schema.
 
 - `(tableschema.Schema)` - returns schema class instance
 
-#### `resource.iter(keyed=Fase, extended=False, cast=True, relations=False)`
+#### `resource.iter(keyed=False, extended=False, cast=True, integrity=False, relations=False)`
 
 > Only for tabular resources
 
@@ -448,6 +497,7 @@ Iter through the table data and emits rows cast based on table schema (async for
 - `keyed (bool)` - iter keyed rows
 - `extended (bool)` - iter extended rows
 - `cast (bool)` - disable data casting if false
+- `integrity (bool)` - if true actual size in BYTES and SHA256 hash of the file will be checked against `descriptor.bytes` and `descriptor.hash` (other hashing algorithms are not supported and will be skipped silently)
 - `relations (bool)` - if true foreign key fields will be checked and resolved to its references
 - `(exceptions.DataPackageException)` - raises any error occured in this process
 - `(any[]/any{})` - yields rows:
@@ -455,7 +505,7 @@ Iter through the table data and emits rows cast based on table schema (async for
   - `{header1: value1, header2: value2}` - keyed
   - `[rowNumber, [header1, header2], [value1, value2]]` - extended
 
-#### `resource.read(keyed=False, extended=False, cast=True, relations=False, limit=None)`
+#### `resource.read(keyed=False, extended=False, cast=True, integrity=False, relations=False, limit=None)`
 
 > Only for tabular resources
 
@@ -464,10 +514,20 @@ Read the whole table and returns as array of rows. Count of rows could be limite
 - `keyed (bool)` - flag to emit keyed rows
 - `extended (bool)` - flag to emit extended rows
 - `cast (bool)` - flag to disable data casting if false
+- `integrity (bool)` - if true actual size in BYTES and SHA256 hash of the file will be checked against `descriptor.bytes` and `descriptor.hash` (other hashing algorithms are not supported and will be skipped silently)
 - `relations (bool)` - if true foreign key fields will be checked and resolved to its references
 - `limit (int)` - integer limit of rows to return
 - `(exceptions.DataPackageException)` - raises any error occured in this process
 - `(list[])` - returns array of rows (see `table.iter`)
+
+#### `resource.check_integrity()`
+
+> Only for tabular resources
+
+It checks size in BYTES and SHA256 hash of the file against `descriptor.bytes` and `descriptor.hash` (other hashing algorithms are not supported and will be skipped silently).
+
+- `(exceptions.IntegrityError)` - raises if there are integrity issues
+- `(bool)` - returns True if no issues
 
 #### `resource.check_relations()`
 
@@ -475,7 +535,7 @@ Read the whole table and returns as array of rows. Count of rows could be limite
 
 It checks foreign keys and raises an exception if there are integrity issues.
 
-- `(exceptions.RelationError)` - raises if there are integrity issues
+- `(exceptions.RelationError)` - raises if there are relation issues
 - `(bool)` - returns True if no issues
 
 #### `resource.raw_iter(stream=False)`
@@ -491,9 +551,11 @@ Returns resource data as bytes.
 
 - (bytes) - returns resource data in bytes
 
-#### `resource.infer()`
+#### `resource.infer(**options)`
 
 Infer resource metadata like name, format, mediatype, encoding, schema and profile. It commits this changes into resource instance.
+
+- `options` - options will be passed to `tableschema.infer` call, for more control on results (e.g. for setting `limit`, `confidence` etc.).
 
 - `(dict)` - returns resource descriptor
 
@@ -514,6 +576,147 @@ Saves this resource into storage if `storage` argument is passed or saves this r
 - `options (dict)` - storage options to use for storage creation
 - `(exceptions.DataPackageException)` - raises error if something goes wrong
 - `(bool)` - returns true on success
+
+### Group
+
+A class representing a group of tabular resources. Groups can be used to read multiple resource as one or to export them, for example, to a database as one table. To define a group add the `group: <name>` field to corresponding resources. The group's metadata will be created from the "leading" resource's metadata (the first resource with the group name).
+
+Consider we have a data package with two tables partitioned by a year and a shared schema stored separately:
+
+>  cars-2017.csv
+
+```csv
+name,value
+bmw,2017
+tesla,2017
+nissan,2017
+```
+
+>  cars-2018.csv
+
+```csv
+name,value
+bmw,2018
+tesla,2018
+nissan,2018
+```
+
+> cars.schema.json
+
+```json
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "value",
+            "type": "integer"
+        }
+    ]
+}
+```
+
+> datapackage.json
+
+```json
+{
+    "name": "datapackage",
+    "resources": [
+        {
+            "group": "cars",
+            "name": "cars-2017",
+            "path": "cars-2017.csv",
+            "profile": "tabular-data-resource",
+            "schema": "cars.schema.json"
+        },
+        {
+            "group": "cars",
+            "name": "cars-2018",
+            "path": "cars-2018.csv",
+            "profile": "tabular-data-resource",
+            "schema": "cars.schema.json"
+        }
+    ]
+}
+```
+
+Let's read the resources separately:
+
+```python
+package = Package('datapackage.json')
+package.get_resource('cars-2017').read(keyed=True) == [
+    {'name': 'bmw', 'value': 2017},
+    {'name': 'tesla', 'value': 2017},
+    {'name': 'nissan', 'value': 2017},
+]
+package.get_resource('cars-2018').read(keyed=True) == [
+    {'name': 'bmw', 'value': 2018},
+    {'name': 'tesla', 'value': 2018},
+    {'name': 'nissan', 'value': 2018},
+]
+```
+
+On the other hand, these resources defined with a `group: cars` field. It means we can treat them as a group:
+
+```python
+package = Package('datapackage.json')
+package.get_group('cars').read(keyed=True) == [
+    {'name': 'bmw', 'value': 2017},
+    {'name': 'tesla', 'value': 2017},
+    {'name': 'nissan', 'value': 2017},
+    {'name': 'bmw', 'value': 2018},
+    {'name': 'tesla', 'value': 2018},
+    {'name': 'nissan', 'value': 2018},
+]
+```
+
+We can use this approach when we need to save the data package to a storage, for example, to a SQL database. There is the `merge_groups` flag to enable groupping behaviour:
+
+```python
+package = Package('datapackage.json')
+package.save(storage='sql', engine=engine)
+# SQL tables:
+# - cars-2017
+# - cars-2018
+package.save(storage='sql', engine=engine, merge_groups=True)
+# SQL tables:
+# - cars
+```
+
+#### `Group`
+
+This class doesn't have any public constructor. Use `package.get_group`.
+
+#### `group.name`
+
+- `(str)` - returns the group name
+
+#### `group.headers`
+
+The same as `resource.headers`
+
+#### `group.schema`
+
+The same as `resource.schema`
+
+#### `group.iter(...)`
+
+The same as `resource.iter`
+
+#### `group.read(...)`
+
+The same as `resource.read`
+
+#### `group.check_relations(...)`
+
+The same as `resource.check_relations` but without the optional argument *foreign_keys_values*.
+This method will test foreignKeys of the whole group at once otpimizing the process by creating the foreign_key_values hashmap only once before testing the set of resources.
+
+- () no args
+- `(tableschema.exceptions)` - raises errors if something validation fails
+- `(Boolean)` - returns True if validation succeeds
 
 ### Profile
 
@@ -556,7 +759,7 @@ Validate a data package `descriptor` against the profile.
 - `(exceptions.ValidationError)` - raises if not valid
 - `(bool)` - returns True if valid
 
-### Validate
+### validate
 
 A standalone function to validate a data package descriptor:
 
@@ -581,7 +784,7 @@ Validate a data package descriptor.
 - (exceptions.ValidationError) - raises on invalid
 - `(bool)` - returns true on valid
 
-### Infer
+### infer
 
 A standalone function to infer a data package descriptor.
 
@@ -716,9 +919,13 @@ All validation errors.
 
 All value cast errors.
 
-#### `exceptions.RelationError`
+#### `exceptions.IntegrityError`
 
 All integrity errors.
+
+#### `exceptions.RelationError`
+
+All relation errors.
 
 #### `exceptions.StorageError`
 
@@ -755,6 +962,19 @@ Options:
 Commands:
   infer
   validate
+```
+
+### Notes
+
+#### Accessing data behind a proxy server
+
+Before the `package = Package("https://xxx.json")` call set these environment variables:
+
+```python
+import os
+
+os.environ["HTTP_PROXY"] = 'xxx'
+os.environ["HTTPS_PROXY"] = 'xxx'
 ```
 
 ## Contributing
@@ -816,14 +1036,47 @@ Here is a list of the library contributors:
 
 Here described only breaking and the most important changes. The full changelog and documentation for all released versions could be found in nicely formatted [commit history](https://github.com/frictionlessdata/datapackage-py/commits/master).
 
-### v1.2
+#### v1.10
+
+- Added an ability to check tabular resource's integrity
+
+#### v1.9
+
+- Added `resource.package` property
+
+#### v1.8
+
+- Added support for [groups of resources](#group)
+
+#### v1.7
+
+- Added support for [compression of resources](https://frictionlessdata.io/specs/patterns/#compression-of-resources)
+
+#### v1.6
+
+- Added support for custom request session
+
+#### v1.5
 
 Updated behaviour:
+- Added support for Python 3.7
 
-- CLI command `$ datapackage infer` now outputs only a JSON-formatted data package descriptor.
-
-### v1.1
+#### v1.4
 
 New API added:
+- added `skip_rows` support to the resource descriptor
 
+#### v1.3
+
+New API added:
+- property `package.base_path` is now publicly available
+
+#### v1.2
+
+Updated behaviour:
+- CLI command `$ datapackage infer` now outputs only a JSON-formatted data package descriptor.
+
+#### v1.1
+
+New API added:
 - Added an integration between `Package/Resource` and the `tableschema.Storage` - https://github.com/frictionlessdata/tableschema-py#storage. It allows to load and save data package from/to different storages like SQL/BigQuery/etc.

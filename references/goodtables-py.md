@@ -3,6 +3,7 @@
 [![Travis](https://img.shields.io/travis/frictionlessdata/goodtables-py/master.svg)](https://travis-ci.org/frictionlessdata/goodtables-py)
 [![Coveralls](http://img.shields.io/coveralls/frictionlessdata/goodtables-py.svg?branch=master)](https://coveralls.io/r/frictionlessdata/goodtables-py?branch=master)
 [![PyPi](https://img.shields.io/pypi/v/goodtables.svg)](https://pypi.python.org/pypi/goodtables)
+[![Github](https://img.shields.io/badge/github-master-brightgreen)](https://github.com/frictionlessdata/goodtables-py)
 [![Gitter](https://img.shields.io/gitter/room/frictionlessdata/chat.svg)](https://gitter.im/frictionlessdata/chat)
 
 Goodtables is a framework to validate tabular data. It can check the structure
@@ -17,29 +18,45 @@ of your data (e.g. all rows have the same number of columns), and its contents
 * **Parallelized validations for multi-table datasets**
 * **Command line interface**
 
-## Table of Contents
+## Contents
 
-- [Features](#features)
-- [Getting Started](#getting-started)
+<!--TOC-->
+
+  - [Getting Started](#getting-started)
     - [Installing](#installing)
     - [Running on CLI](#running-on-cli)
     - [Running on Python](#running-on-python)
-- [Validation](#validation)
+  - [Validation](#validation)
     - [Basic checks](#basic-checks)
     - [Structural checks](#structural-checks)
     - [Content checks](#content-checks)
     - [Advanced checks](#advanced-checks)
-- [Developer documentation](#developer-documentation)
+      - [blacklisted-value](#blacklisted-value)
+      - [deviated-value](#deviated-value)
+      - [foreign-key](#foreign-key)
+      - [sequential-value](#sequential-value)
+      - [truncated-value](#truncated-value)
+      - [custom-constraint](#custom-constraint)
+    - [Validation report format](#validation-report-format)
+  - [Developer documentation](#developer-documentation)
     - [Semantic versioning](#semantic-versioning)
     - [Validate](#validate)
-- [FAQ](#faq)
+      - [Validation report](#validation-report)
+      - [Checks](#checks)
+      - [Presets](#presets)
+  - [Contributing](#contributing)
+  - [FAQ](#faq)
     - [How can I add a new custom check?](#how-can-i-add-a-new-custom-check)
     - [How can I add support for a new tabular file type?](#how-can-i-add-support-for-a-new-tabular-file-type)
-- [Changelog](#changelog)
+  - [Changelog](#changelog)
+
+<!--TOC-->
 
 ## Getting Started
 
 ### Installing
+
+> If you have a building error on MacOS please try following this solution - https://github.com/google/jsonnet/issues/573#issuecomment-433201074
 
 ```
 pip install goodtables
@@ -130,7 +147,8 @@ Lastly, if the order of the fields in the data is different than in your schema,
 | --- | --- |
 | [blacklisted-value](#blacklisted-value) | Ensure there are no cells with the blacklisted values. |
 | [deviated-value](#deviated-value) | Ensure numbers are within a number of standard deviations from the average. |
-| [sequential-value](#sequential-value) | Ensure numbers are be sequential. |
+| [foreign-key](#foreign-key) | Ensure foreign keys are valid within a data package |
+| [sequential-value](#sequential-value) | Ensure numbers are sequential. |
 | [truncated-value](#truncated-value) | Detect values that were potentially truncated. |
 | [custom-constraint](#custom-constraint) | Defines a constraint based on the values of other columns (e.g. `value * quantity == total`). |
 
@@ -159,7 +177,7 @@ Let's check that the `name` column doesn't contain rows with `bug` or `bad`:
 from goodtables import validate
 
 report = validate('data.csv', checks=[
-    {'blacklisted-value': {'column': 'id', 'blacklist': ['bug', 'bad']}},
+    {'blacklisted-value': {'column': 'name', 'blacklist': ['bug', 'bad']}},
 ])
 # error on row 3 with code "blacklisted-value"
 # error on row 4 with code "blacklisted-value"
@@ -199,6 +217,107 @@ report = validate('data.csv', checks=[
     {'deviated-value': {'column': 'temperature', 'average': 'median', 'interval': 3}},
 ])
 # error on row 10 with code "deviated-value"
+```
+
+#### foreign-key
+
+> We support here relative paths. It MUST be used only for trusted data sources.
+
+This check validate foreign keys within a data package. Consider we have a data package defined below:
+
+```python
+DESCRIPTOR = {
+  'resources': [
+    {
+      'name': 'cities',
+      'data': [
+        ['id', 'name', 'next_id'],
+        [1, 'london', 2],
+        [2, 'paris', 3],
+        [3, 'rome', 4],
+        # [4, 'rio', None],
+      ],
+      'schema': {
+        'fields': [
+          {'name': 'id', 'type': 'integer'},
+          {'name': 'name', 'type': 'string'},
+          {'name': 'next_id', 'type': 'integer'},
+        ],
+        'foreignKeys': [
+          {
+            'fields': 'next_id',
+            'reference': {'resource': '', 'fields': 'id'},
+          },
+          {
+            'fields': 'id',
+            'reference': {'resource': 'people', 'fields': 'label'},
+          },
+        ],
+      },
+    }, {
+      'name': 'people',
+      'data': [
+        ['label', 'population'],
+        [1, 8],
+        [2, 2],
+        # [3, 3],
+        # [4, 6],
+      ],
+    },
+  ],
+}
+```
+
+Running `goodtables` on it will raise a few `foreign-key` errors because we have commented some rows in the data package's data:
+
+```python
+report = validate(DESCRIPTOR, checks=['structure', 'schema', 'foreign-key'])
+print(report)
+```
+
+```
+{'error-count': 2,
+ 'preset': 'datapackage',
+ 'table-count': 2,
+ 'tables': [{'datapackage': '...',
+             'error-count': 2,
+             'errors': [{'code': 'foreign-key',
+                         'message': 'Foreign key "[\'next_id\']" violation in '
+                                    'row 4',
+                         'message-data': {'fields': ['next_id']},
+                         'row-number': 4},
+                        {'code': 'foreign-key',
+                         'message': 'Foreign key "[\'id\']" violation in row 4',
+                         'message-data': {'fields': ['id']},
+                         'row-number': 4}],
+             'format': 'inline',
+             'headers': ['id', 'name', 'next_id'],
+             'resource-name': 'cities',
+             'row-count': 4,
+             'schema': 'table-schema',
+             'source': 'inline',
+             'time': 0.031,
+             'valid': False},
+            {'datapackage': '...',
+             'error-count': 0,
+             'errors': [],
+             'format': 'inline',
+             'headers': ['label', 'population'],
+             'resource-name': 'people',
+             'row-count': 3,
+             'source': 'inline',
+             'time': 0.038,
+             'valid': True}],
+ 'time': 0.117,
+ 'valid': False,
+ 'warnings': []}
+```
+
+It experimetally supports external resource checks, for example, for a `foreignKey` definition like these:
+
+```json
+{"package": "../people/datapackage.json", "resource": "people", "fields": "label"}
+{"package": "http:/example.com/datapackage.json", "resource": "people", "fields": "label"}
 ```
 
 #### sequential-value
@@ -281,6 +400,72 @@ report = validate('data.csv', checks=[
     {'custom-constraint': {'constraint': 'salary > bonus * 4'}},
 ])
 # error on row 4 with code "custom-constraint"
+```
+
+### Validation report format
+
+The validation report follows the JSON Schema defined on
+[goodtables/schemas/report.json][validation-jsonschema]. As an example, this is
+the report generated by running `goodtables --row-limit 5 --json` on the file
+[data/datapackages/invalid/datapackage.json](data/datapackage/invalid/datapackage.json):
+
+```json
+{
+    "time": 0.015,
+    "valid": false,
+    "error-count": 2,
+    "table-count": 2,
+    "tables": [
+        {
+            "datapackage": "data/datapackages/invalid/datapackage.json",
+            "time": 0.005,
+            "valid": false,
+            "error-count": 1,
+            "row-count": 4,
+            "source": "data/datapackages/invalid/data.csv",
+            "headers": [
+                "id",
+                "name",
+                "description",
+                "amount"
+            ],
+            "format": "inline",
+            "schema": "table-schema",
+            "errors": [
+                {
+                    "code": "blank-row",
+                    "row-number": 3,
+                    "message": "Row 3 is completely blank"
+                }
+            ]
+        },
+        {
+            "datapackage": "data/datapackages/invalid/datapackage.json",
+            "time": 0.004,
+            "valid": false,
+            "error-count": 1,
+            "row-count": 5,
+            "source": "data/datapackages/invalid/data2.csv",
+            "headers": [
+                "parent",
+                "comment"
+            ],
+            "format": "inline",
+            "schema": "table-schema",
+            "errors": [
+                {
+                    "code": "blank-row",
+                    "row-number": 4,
+                    "message": "Row 4 is completely blank"
+                }
+            ]
+        }
+    ],
+    "warnings": [
+        "Table \"data/datapackages/invalid/data2.csv\" inspection has reached 5 row(s) limit"
+    ],
+    "preset": "datapackage"
+}
 ```
 
 ## Developer documentation
@@ -447,21 +632,24 @@ $ make test
 To create a custom check user could use a `check` decorator. This way the builtin check could be overridden (use the spec error code like `duplicate-row`) or could be added a check for a custom error (use `type`, `context` and `position` arguments):
 
 ```python
-from goodtables import validate, check
+from goodtables import validate, check, Error
 
 @check('custom-check', type='custom', context='body')
-def custom_check(errors, cells, row_number):
+def custom_check(cells):
+    errors = []
     for cell in cells:
-        errors.append({
-            'code': 'custom-error',
-            'message': 'Custom error',
-            'row-number': row_number,
-            'column-number': cell['number'],
-        })
-        cells.remove(cell)
+        message = 'Custom error on column {column_number} and row {row_number}'
+        error = Error(
+            'custom-error',
+            cell,
+            message
+        )
+        errors.append(error)
+    return errors
 
 report = validate('data.csv', checks=['custom-check'])
 ```
+
 For now this documentation section is incomplete. Please see builtin checks to learn more about checking protocol.
 
 ### How can I add support for a new tabular file type?
@@ -496,12 +684,44 @@ For now this documentation section is incomplete. Please see builtin presets to 
 
 ## Changelog
 
-### v1.5
+Here described only breaking and the most important changes. The full changelog and documentation for all released versions could be found in nicely formatted [commit history](https://github.com/frictionlessdata/goodtables-py/commits/master).
+
+##### v2.4
+
+- Added integrity checks for data packages. If `resource.bytes` or `resource.hash` (sha256) is provided it will be verified against actual values
+
+##### v2.3
+
+- Added a [foreign keys check](#foreign-key)
+
+##### v2.2
+
+- Improved missing/non-matching-headers detection ([#298](https://github.com/frictionlessdata/goodtables-py/issues/298))
+
+##### v2.1
+
+- A new key added to the `error.to_dict` return: `message-data`
+
+##### v2.0
+
+Breaking changes:
+
+- Checks method signature now only receives the current row's `cells` list
+- Checks raise errors by returning an array of `Error` objects
+- Cells have the row number in the `row-number` key
+- Files with ZIP extension are presumed to be datapackages, so `goodtables mydatapackage.zip` works
+- Improvements to goodtables CLI ([#233](https://github.com/frictionlessdata/goodtables-py/issues/233))
+- New `goodtables init <data paths>` command to create a new `datapackage.json` with the files passed as parameters and their inferred schemas.
+
+Bug fixes:
+- Fix bug with `truncated-values` check on date fields ([#250](https://github.com/frictionlessdata/goodtables-py/issues/250))
+
+##### v1.5
 
 New API added:
 - Validation `source` now could be a `pathlib.Path`
 
-### v1.4
+##### v1.4
 
 Improved behaviour:
 - rebased on Data Quality Spec v1
@@ -509,7 +729,7 @@ Improved behaviour:
 - rebased on Table Schema Spec v1
 - treat primary key as required/unique field
 
-### v1.3
+##### v1.3
 
 New advanced checks added:
 - `blacklisted-value`
@@ -518,24 +738,24 @@ New advanced checks added:
 - `sequential-value`
 - `truncated-value`
 
-### v1.2
+##### v1.2
 
 New API added:
 - `report.preset`
 - `report.tables[].schema`
 
-### v1.1
+##### v1.1
 
 New API added:
 - `report.tables[].scheme`
 - `report.tables[].format`
 - `report.tables[].encoding`
 
-### v1.0
+##### v1.0
 
 This version includes various big changes. A migration guide is under development and will be published here.
 
-### v0.6
+##### v0.6
 
 First version of `goodtables`.
 
@@ -543,3 +763,4 @@ First version of `goodtables`.
 [tabulator]: https://github.com/frictionlessdata/tabulator-py/
 [datapackage]: https://specs.frictionlessdata.io/data-package/ "Data Package specification"
 [semver]: https://semver.org/ "Semantic Versioning"
+[validation-jsonschema]: goodtables/schemas/report.json "Validation Report JSON Schema"
