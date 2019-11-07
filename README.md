@@ -24,6 +24,23 @@ To update the `docsify` settings:
 To update the visual design:
 - update the `documentation/theme.css` file
 
+To add tabs with different languages:
+
+```md
+<!-- tabs:start -->
+#### **Python**
+
+```python
+package = Package()
+```
+#### **JavaScript**
+
+```javascript
+const packagePackage = await Package.load()
+```
+<!-- tabs:end -->
+```
+
 ## References
 
 - https://docsify.js.org/#/?id=docsify
