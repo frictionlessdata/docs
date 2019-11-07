@@ -4,7 +4,7 @@ A documentation portal for FrictionlessData
 
 ## Development
 
-To start a development server at `http://localhost:3000`:
+To start a development server at http://localhost:3000:
 
 ```bash
 nvm install 12
