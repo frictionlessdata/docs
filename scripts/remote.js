@@ -13,7 +13,7 @@ async function main() {
     for (const project of projects) {
       const url = `https://raw.githubusercontent.com/frictionlessdata/${project.repo}/master/README.md`
       const doc = (await axios.get(url)).data
-      const path = `documentation/references/${project.repo}.md`
+      const path = `docs/references/${project.repo}.md`
       fs.writeFileSync(path, doc)
       console.log(`Updated ${path}`)
     }
