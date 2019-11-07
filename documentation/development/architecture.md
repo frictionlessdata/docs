@@ -2,13 +2,9 @@
 
 General documentation container and issue tracker for the Frictionless Data stack.
 
-## Implementation Reference
-
-### Architecture
-
 ![Architecture](https://i.imgur.com/tILRP84.png)
 
-### Language
+## Language
 - row number - row number starting from 1
 - col number - column number starting from 1
 - headers - array of column names
@@ -17,7 +13,7 @@ General documentation container and issue tracker for the Frictionless Data stac
 - extended row - array containing row number, headers and row
 - descriptor - dictionary describing something
 
-### Implementation
+## Implementation
 
 There are two level of implementations:
   - `basic`
@@ -25,11 +21,11 @@ There are two level of implementations:
 
 Python libraries are intended to be on `extended` level of implementation when all other languages should fosuc on `basic` implementation level (it includes `datapackage` and `tableschema` without API marked as `extended`).
 
-### Interface
+## Interface
 
 This interface is described on pseodo declarative language to provide general functional requirements and naming conventions for implementations. This language based on Python idioms. Implementations for other languages should follow they own language idioms (e.g. exception handling, asynchronous functions etc).
 
-#### goodtables
+### goodtables
 
 ```
 [extended implementation]
@@ -52,7 +48,7 @@ spec
 ~cli
 ```
 
-#### datapackage
+### datapackage
 
 ```
 [basic implementation]
@@ -109,7 +105,7 @@ Resource(descriptor, base_path=None)
 ~cli
 ```
 
-#### tableschema
+### tableschema
 
 ```
 [basic implementation]
@@ -165,7 +161,7 @@ plugins
 ~cli
 ```
 
-#### tabulator
+### tabulator
 
 ```
 [extended implementation]
