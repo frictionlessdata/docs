@@ -1,7 +1,6 @@
 # FrictionlessData Docs
 
-
-Welcome to the FrictionlessData Developer Hub!
+Welcome to the FrictionlessData Documentation Hub!
 
 ## Overview
 
