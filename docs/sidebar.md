@@ -25,6 +25,12 @@
     - [datapackage-py](software-references/python-libraries/datapackage-py.md)
     - [goodtables-py](software-references/python-libraries/goodtables-py.md)
     - [tableschema-py](software-references/python-libraries/tableschema-py.md)
+    - [tableschema-bigquery-py](software-references/python-libraries/tableschema-bigquery-py.md)
+    - [tableschema-ckan-datastore-py](software-references/python-libraries/tableschema-ckan-datastore-py.md)
+    - [tableschema-elasticsearch-py](software-references/python-libraries/tableschema-elasticsearch-py.md)
+    - [tableschema-pandas-py](software-references/python-libraries/tableschema-pandas-py.md)
+    - [tableschema-spss-py](software-references/python-libraries/tableschema-spss-py.md)
+    - [tableschema-sql-py](software-references/python-libraries/tableschema-sql-py.md)
     - [tabulator-py](software-references/python-libraries/tabulator-py.md)
 
   - [R Libraries](software-references/r-libraries/index.md)
@@ -34,6 +40,7 @@
   - [Javascript Libraries](software-references/javascript-libraries/index.md)
     - [datapackage-js](software-references/javascript-libraries/datapackage-js.md)
     - [goodtables-js](software-references/javascript-libraries/goodtables-js.md)
+    - [tableschema-js](software-references/javascript-libraries/tableschema-js.md)
 
   - [Ruby Libraries](software-references/ruby-libraries/index.md)
     - [datapackage-rb](software-references/ruby-libraries/datapackage-rb.md)
@@ -47,7 +54,7 @@
     - [datapackage-go](software-references/go-libraries/datapackage-go.md)
     - [tableschema-go](software-references/go-libraries/tableschema-go.md)
   
-  - [Php Libraries](software-references/php-libraries/index.md)
+  - [PHP Libraries](software-references/php-libraries/index.md)
     - [datapackage-php](software-references/php-libraries/datapackage-php.md)
     - [tableschema-php](software-references/php-libraries/tableschema-php.md)
   
@@ -59,4 +66,8 @@
     - [datapackage-clj](software-references/clojure-libraries/datapackage-clj.md)
     - [tableschema-clj](software-references/clojure-libraries/tableschema-clj.md)
   
-  - [Goodtables ui](software-references/goodtables-ui.md)
+  - [Goodtables UI](software-references/goodtables-ui.md)
+
+  - [Datapackage UI](software-references/datapackage-ui.md)
+
+  - [Tableschema UI](software-references/tableschema-ui.md)
