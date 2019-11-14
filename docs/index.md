@@ -4,9 +4,13 @@ Welcome to the FrictionlessData Documentation Hub!
 
 ## Overview
 
-> For higher level project overview please visit https://frictionlessdata.io/
+
+> November 2019 Update: This documentation site is a work in progress. Please check out https://frictionlessdata.io/docs/ for more help in the interim.
+
+For higher level project overview please visit https://frictionlessdata.io/
 
 Frictionless Data shortens the path from data to insight with a collection of specifications and software for the publication, transport, and consumption of data. At the heart of our approach is a deep understanding of the multi-faceted nature of data work, and an emphasis on platform-agnostic interoperability. From consumer spreadsheet software, through to cloud-based services for data analysis, the future of data is frictionless.
+
 
 ## Implement
 
