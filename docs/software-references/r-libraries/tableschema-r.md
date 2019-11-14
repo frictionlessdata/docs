@@ -1,7 +1,3 @@
-<img src="okgr.png" align="right" width=130px /><img src="oklabs.png" align="right" width=130px /><br><br/><img src="frictionlessdata.png" align="left" width=60 />rictionless
-Data - <br/> Table Schema
-================
-
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/tableschema.r)](https://cran.r-project.org/package=tableschema.r)
 [![Build
 Status](https://travis-ci.org/frictionlessdata/tableschema-r.svg?branch=master)](https://travis-ci.org/frictionlessdata/tableschema-r)
