@@ -1,5 +1,5 @@
 # Introduction
 
-there is too much friction in working with data. The frictions we seek to remove---in getting, sharing, and validating data---stop people from truly benefiting from the wealth of data being opened up every day. 
+At its core, [Frictionless Data](https://frictionlessdata.io/) is a set of [specifications](https://frictionlessdata.io/specs/) for data and metadata interoperability, accompanied by a collection of [software libraries](https://frictionlessdata.io/software/) that implement these specifications, and a range of best practices for data management. The core specification, the Data Package, is a simple and practical “container” for data and metadata.
 
-We provide a simple wrapper and basic structure for transportation of data that significantly reduces the friction in data sharing and integration, supports automation and does this without imposing major changes on the underlying data being packaged. We focus on tabular data but any kind of data can be "packaged". Its lightweight and simple nature it is easy to adopt both for data publishers, data users and data tool makers.
+Get started by reading more about the [project background](/introduction/project-overview.md), about the [software](/introduction/software-overview.md), and about the [specs](/introduction/specs-overview.md). Need help? [Contact us!](/introduction/contact.md)

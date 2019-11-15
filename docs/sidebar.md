@@ -2,6 +2,7 @@
   - [Project overview](introduction/project-overview.md)
   - [Specs overview](introduction/specs-overview.md)
   - [Software overview](introduction/software-overview.md)
+  - [Contact Us](introduction/contact.md)
 
 - [Software References](software-references/index.md)
   
@@ -59,6 +60,7 @@
 - [Tutorials](tutorials/index.md)
   
   - [Datapackage tutorials](tutorials/datapackage-tutorials/index.md)
+    - [Datapackage Introduction](tutorials/datapackage-tutorials/datapackage-intro.md)
     - [Working with Data Package](tutorials/datapackage-tutorials/working-with-data-package.md)
     - [Using Data Package Creator Browser Tool](tutorials/datapackage-tutorials/data-package-creator.md)
     - [Datapackages in R](tutorials/datapackage-tutorials/datapackages-in-r.md)
@@ -76,7 +78,9 @@
   - [Datapackage pipelines tutorials](tutorials/datapackage-pipelines-tutorials/index.md)
     - [Dataflows introduction](tutorials/datapackage-pipelines-tutorials/data-flows-introduction.md)
     - [Dataflows introduction 2](tutorials/datapackage-pipelines-tutorials/data-flows-introduction-2.md)
-    - [Datapackage Pipelines V2](tutorials/datapackage-pipelines-tutorials/datapackage-pipelines-v2.md))
+    - [Datapackage Pipelines V2](tutorials/datapackage-pipelines-tutorials/datapackage-pipelines-v2.md)) 
+  
+  - [Field Guide](tutorials/field-guide/index.md)
   
   - [General tutorials](tutorials/general-tutorials/index.md)
     - [Validating scraped data tutorial](tutorials/general-tutorials/validating-scraped-data.md)
