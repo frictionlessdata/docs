@@ -76,6 +76,7 @@ Tests should be written using OKI coding standards. Start write tests from top (
 We use SemVer for versioning and Travis for testing and releasing/deployments. We prefer short release cycle (features and fixes could be released immediately). Releases should be configured using tags based on package examples workflow provided by OKI.
 
 ## References
+- Open Knowledge Foundation [Project Participating Guidelines + Code of Conduct](https://okfn.org/project-participation-guidelines/)
 - [Open Knowledge International Coding Standards](https://github.com/okfn/coding-standards)
 - [Python Package Example](https://github.com/okfn/oki-py)
 - [JavaScript Package Example](https://github.com/okfn/oki-js)
