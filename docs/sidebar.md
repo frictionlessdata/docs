@@ -63,6 +63,9 @@
     - [Datapackage Introduction](tutorials/datapackage-tutorials/datapackage-intro.md)
     - [Working with Data Package](tutorials/datapackage-tutorials/working-with-data-package.md)
     - [Using Data Package Creator Browser Tool](tutorials/datapackage-tutorials/data-package-creator.md)
+    - [Datapackages in Python](tutorials/datapackage-tutorials/datapackages-in-python.md)
+    - [Python Datapackages with Pandas Jupyter Notebook](tutorials/datapackage-tutorials/datapackages-pandas.md)
+    - [Datapackages in JavaScript](tutorials/datapackage-tutorials/datapackages-in-js.md)
     - [Datapackages in R](tutorials/datapackage-tutorials/datapackages-in-r.md)
     - [Datapackages in Clojure](tutorials/datapackage-tutorials/datapackages-in-clojure.md)
     - [Datapackages in Java](tutorials/datapackage-tutorials/datapackages-in-java.md)
@@ -84,6 +87,8 @@
   
   - [General tutorials](tutorials/general-tutorials/index.md)
     - [Validating scraped data tutorial](tutorials/general-tutorials/validating-scraped-data.md)
+    - [Joining data tutorial 1](tutorials/general-tutorials/joining-data.md)
+    - [Joining data tutorial 2](tutorials/general-tutorials/joining-data-2.md)
   
   - [Working with Data Resource](tutorials/working-with-data-resource.md)
   
